@@ -3,7 +3,7 @@
 int Walker::sSelected = 0;
 RandomGenerator Walker::gen = RandomGenerator();
 
-Walker::Walker(float mX, float mY)
+Walker::Walker(float mX, float mY) : walkerWidth(8.f), walkerHeight(8.f), walkerVelocity(1.f)
 {
     generateRandomColor();
 
@@ -14,11 +14,6 @@ Walker::Walker(float mX, float mY)
     shape.setSize({ walkerWidth, walkerHeight });
     shape.setFillColor(sf::Color(sf::Uint8(color.x), sf::Uint8(color.y), sf::Uint8(color.z)));
     shape.setOrigin(walkerWidth / 2.0f, walkerHeight / 2.0f);
-}
-
-Walker::~Walker()
-{
-    //dtor
 }
 
 void Walker::changeStrenght()
@@ -109,8 +104,6 @@ float Walker::bottom() const _NOEXCEPT
 {
     return shape.getPosition().y + shape.getSize().y / 2.0f;
 }
-
-//private methods
 
 void Walker::generateRandomColor()
 {

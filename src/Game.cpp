@@ -1,19 +1,18 @@
 #include "Game.h"
 
-Game::Game()
+Game::Game() : windowWidth(800), windowHeight(600), walkerCount(15),shaderFile("shaders/lightShader.frag"), running(false)
 {
+
+    window.create(sf::VideoMode(windowWidth, windowHeight),"Followers!");
+
     window.setFramerateLimit(500);
     initializeWalkers();
 
     //preload shader
     ShaderLoader::getShader(shaderFile);
+    shader = ShaderLoader::getShader(shaderFile);
+    shader->setParameter("frag_ScreenResolution", sf::Vector2f((float) windowWidth, (float) windowHeight));
 }
-
-Game::~Game()
-{
-    //dtor
-}
-
 
 void Game::run()
 {
@@ -51,17 +50,10 @@ void Game::run()
     }
 }
 
-
-
-//private
-
-
 void Game::initializeWalkers()
 {
-    walkers.clear();
     for (int a { 0 }; a < walkerCount; ++a)
     {
-
         walkers.emplace_back(window.getSize().x / 2.f,
                              window.getSize().y / 2.f);
     }
@@ -85,7 +77,6 @@ void Game::checkInput()
             Walker::changeStrenght();
         }
     }
-
 }
 
 void Game::update()
@@ -109,11 +100,9 @@ void Game::draw()
 
         walker.draw(myRenderTexture);
 
-        sf::Shader* shader = ShaderLoader::getShader(shaderFile);
-        shader->setParameter("frag_ScreenResolution", sf::Vector2f(static_cast<float>(windowWidth), static_cast<float>(windowHeight)));
         shader->setParameter("frag_LightOrigin", walker.getPosition());
         shader->setParameter("frag_LightColor", walker.getColor());
-        shader->setParameter("frag_LightAttenuation", frag_LightAttenuation);
+        shader->setParameter("frag_LightAttenuation", 50);
 
         sf::RenderStates states;
         states.shader = shader;

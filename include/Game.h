@@ -15,33 +15,33 @@ class Game
 {
 public:
     Game();
-    virtual ~Game();
-     void run();
+    virtual ~Game() = default;
+    void run();
 
 protected:
 private:
-    const unsigned int windowWidth = 800;
-    const unsigned int windowHeight = 600;
-    const int walkerCount = 15;
+
     const float ftStep = 1.f;
     const float ftSlice = 1.f;
-
-    const std::string shaderFile = "shaders/lightShader.frag";
-
-    int frag_LightAttenuation = 50;
-
-    sf::RenderWindow window { sf::VideoMode(windowWidth, windowHeight),"Followers!" };
-
     FrameTime lastFt = 0.f;
     FrameTime currentSlice = 0.f;
-    bool running = false;
 
+    unsigned int windowWidth;
+    unsigned int windowHeight;
+    int walkerCount;
+
+    std::string shaderFile;
+    sf::Shader* shader;
+
+    bool running;
+
+    sf::RenderWindow window;
     sf::RenderTexture myRenderTexture;
     sf::Sprite spriteWorld;
 
     std::vector<Walker> walkers;
 
-    private:
+private:
     void initializeWalkers();
     void checkInput();
     void update();

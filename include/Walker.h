@@ -19,7 +19,7 @@ public:
     static RandomGenerator gen;
 
     Walker(float mX, float mY);
-    virtual ~Walker();
+    virtual ~Walker() = default;
 
     static void changeStrenght();
     void update(FrameTime ft, sf::RenderWindow& window);
@@ -37,9 +37,9 @@ public:
 
 protected:
 private:
-    const float walkerWidth = 8.f;
-    const float walkerHeight = 8.f;
-    const float walkerVelocity = 1.f;
+    float walkerWidth = 8.f;
+    float walkerHeight = 8.f;
+    float walkerVelocity = 1.f;
 
     float strenghts[2];
 

@@ -15,5 +15,7 @@ void main()
     float attenuation=1.0/( frag_LightAttenuation*linear_distance + frag_LightAttenuation*linear_distance);
 
     vec4 lightColor = vec4(frag_LightColor, 1.0);
-    vec4 color = vec4(attenuation, attenuation, attenuation, 1.0) * lightColor; gl_FragColor=color;
+    vec4 color = vec4(attenuation, attenuation, attenuation, 1.0) * lightColor;
+
+    gl_FragColor=color;
 }

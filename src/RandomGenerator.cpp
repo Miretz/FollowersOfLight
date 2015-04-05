@@ -1,15 +1,5 @@
 #include "RandomGenerator.h"
 
-RandomGenerator::RandomGenerator()
-{
-    //ctor
-}
-
-RandomGenerator::~RandomGenerator()
-{
-    //dtor
-}
-
 float RandomGenerator::randomFloat(float min, float max)
 {
     float lessThanZero = 0.f;
