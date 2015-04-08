@@ -3,7 +3,7 @@
 int Walker::sSelected = 0;
 RandomGenerator Walker::gen = RandomGenerator();
 
-Walker::Walker(float mX, float mY) : walkerWidth(8.f), walkerHeight(8.f), walkerVelocity(1.f)
+Walker::Walker(float mX, float mY) : walkerWidth(6.f), walkerHeight(6.f), walkerVelocity(1.f)
 {
     generateRandomColor();
 

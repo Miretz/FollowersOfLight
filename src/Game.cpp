@@ -51,7 +51,7 @@ void Game::run()
 
 void Game::initializeWalkers()
 {
-    for (int a { 0 }; a < walkerCount; ++a)
+    for (int a = 0; a < walkerCount; ++a)
     {
         walkers.emplace_back(window.getSize().x / 2.f,
                              window.getSize().y / 2.f);
@@ -101,7 +101,7 @@ void Game::draw()
 
         shader->setParameter("frag_LightOrigin", walker.getPosition());
         shader->setParameter("frag_LightColor", walker.getColor());
-        shader->setParameter("frag_LightAttenuation", 50);
+        shader->setParameter("frag_LightAttenuation", 50.f);
 
         sf::RenderStates states;
         states.shader = shader;
