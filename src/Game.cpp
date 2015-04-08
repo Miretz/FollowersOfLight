@@ -53,9 +53,12 @@ void Game::initializeWalkers()
 {
     for (int a = 0; a < walkerCount; ++a)
     {
-        walkers.emplace_back(window.getSize().x / 2.f,
-                             window.getSize().y / 2.f);
-    }
+        Walker walker(window.getSize().x / 2.f, window.getSize().y / 2.f);
+        walkers.emplace_back(walker);
+
+        sf::Vector3f color = walker.getColor();
+        vertices.push_back(sf::Vertex(walker.getPosition(), sf::Color(sf::Uint8(color.x), sf::Uint8(color.y), sf::Uint8(color.z)), sf::Vector2f(100, 100)));
+	}
 }
 
 void Game::checkInput()
@@ -94,13 +97,15 @@ void Game::update()
 
 void Game::draw()
 {
-    for (auto& walker : walkers)
+    for (int a = 0; a < walkerCount; ++a)
     {
 
-        walker.draw(myRenderTexture);
+        vertices[a].position = walkers[a].getPosition();
 
-        shader->setParameter("frag_LightOrigin", walker.getPosition());
-        shader->setParameter("frag_LightColor", walker.getColor());
+        walkers[a].draw(myRenderTexture);
+
+        shader->setParameter("frag_LightOrigin", walkers[a].getPosition());
+        shader->setParameter("frag_LightColor", walkers[a].getColor());
         shader->setParameter("frag_LightAttenuation", 50.f);
 
         sf::RenderStates states;
@@ -110,6 +115,8 @@ void Game::draw()
         myRenderTexture.draw(spriteWorld, states);
 
     }
+
+    myRenderTexture.draw(&vertices[0], vertices.size(), sf::LinesStrip);
 
     myRenderTexture.display();
     window.draw(spriteWorld);

@@ -40,6 +40,7 @@ private:
     sf::Sprite spriteWorld;
 
     std::vector<Walker> walkers;
+    std::vector<sf::Vertex> vertices;
 
 private:
     void initializeWalkers();
