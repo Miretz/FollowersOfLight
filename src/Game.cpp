@@ -9,7 +9,6 @@ Game::Game() : windowWidth(800), windowHeight(600), walkerCount(15),shaderFile("
     initializeWalkers();
 
     //preload shader
-    ShaderLoader::getShader(shaderFile);
     shader = ShaderLoader::getShader(shaderFile);
     shader->setParameter("frag_ScreenResolution", sf::Vector2f(static_cast<float>(windowWidth), static_cast<float>(windowHeight)));
 }
