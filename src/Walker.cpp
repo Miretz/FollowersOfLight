@@ -12,7 +12,7 @@ Walker::Walker(float mX, float mY) : walkerWidth(8.f), walkerHeight(8.f), walker
 
     shape.setPosition(mX, mY);
     shape.setSize({ walkerWidth, walkerHeight });
-    shape.setFillColor(sf::Color(sf::Uint8(color.x), sf::Uint8(color.y), sf::Uint8(color.z)));
+    shape.setFillColor(sf::Color(static_cast<sf::Uint8>(color.x), static_cast<sf::Uint8>(color.y), static_cast<sf::Uint8>(color.z)));
     shape.setOrigin(walkerWidth / 2.0f, walkerHeight / 2.0f);
 }
 
