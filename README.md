@@ -7,4 +7,4 @@ What it does:
 - On click changes the strenght of the attraction towards the mouse
 - Each square shines light (using GLSL fragment shader)
 
-<img src="screen.png" />
+<a href="http://imgur.com/FC0mH4c"><img src="http://i.imgur.com/FC0mH4c.png?1" title="source: imgur.com" /></a>
